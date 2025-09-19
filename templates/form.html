@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta>
+    <meta>
+    <title>Petfinder Search</title>
+
+    <!-- Link to external stylesheet (if any) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Inline styles for layout and form design -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f9;
+            padding: 30px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2a4d69;
+        }
+
+        form {
+            background: white;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 4px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button, input[type="submit"] {
+            background-color: #2a4d69;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover, input[type="submit"]:hover {
+            background-color: #1d3557;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page title -->
+    <h1>Search for Adoptable Pets</h1>
+
+    <!-- Pet search form -->
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        <!-- Animal type input -->
+        {{ form.animal_type.label }}
+        {{ form.animal_type(size=32) }}
+
+        <!-- Location input -->
+        {{ form.location.label }}
+        {{ form.location(size=32) }}
+
+        <!-- Breed input -->
+        {{ form.breed.label }}
+        {{ form.breed(size=32) }}
+
+        <!-- Dropdown to pick age -->
+        {{ form.age_range.label }}
+        {{ form.age_range() }}
+
+        <!-- Radio buttons for gender -->
+        {{ form.gender.label }}
+        {{ form.gender() }}
+
+        <!-- Checkbox to show only pets with photos -->
+        {{ form.include_photos.label }} {{ form.include_photos() }}
+
+        <!-- Submit button -->
+        {{ form.submit(class_="btn") }}
+    </form>
+</body>
+</html>

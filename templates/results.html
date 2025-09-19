@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta>
+    <meta>
+    <title>Search Results</title>
+
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Inline styles for layout and results formatting -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f9;
+            padding: 30px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2a4d69;
+        }
+
+        .back-btn {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .back-btn button {
+            background-color: #2a4d69;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .back-btn button:hover {
+            background-color: #1d3557;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background: white;
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 700px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        a {
+            color: #2a4d69;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page heading -->
+    <h1>Adoptable Pets</h1>
+
+    <!-- If pets were found, show them -->
+    {% if pets %}
+        <!-- Button to go back to the search page -->
+        <div class="back-btn">
+            <a href="/"><button type="button">← Back to Search</button></a>
+        </div>
+
+        <!-- List of pet cards -->
+        <ul>
+            {% for pet in pets %}
+                <li>
+                    <h2>{{ pet.name }}</h2>
+                    <p><strong>Type:</strong> {{ pet.type }}</p>
+                    <p><strong>Breed:</strong> {{ pet.breeds.primary }}</p>
+                    <p><strong>Age:</strong> {{ pet.age }}</p>
+                    <p><strong>Description:</strong> {{ pet.description }}</p>
+                    <p><a href="{{ pet.url }}" target="_blank">View Pet Details</a></p>
+                </li>
+            {% endfor %}
+        </ul>
+
+    <!-- If no pets match the search, show a message -->
+    {% else %}
+        <p style="text-align:center;">{{ message }}</p>
+    {% endif %}
+</body>
+</html>
